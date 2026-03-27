@@ -9,7 +9,7 @@ import {
 import {
   Bed, Bath, MapPin, Wifi, Zap, Droplets, Car, Shield,
   Flame, UtensilsCrossed, Trees, ChefHat, Home as HomeIcon,
-  Users, CalendarDays, Phone, Mail, ArrowRight, Sun, Sofa, CheckCircle2,
+  Users, CalendarDays, ArrowRight, Sun, Sofa,
   Banknote, Play,
 } from "lucide-react";
 
@@ -116,7 +116,7 @@ function Navbar() {
               ? "border-[#B86840] text-[#B86840] hover:bg-[#B86840] hover:text-white"
               : "border-white/60 text-white hover:bg-white hover:text-[#1C1510]"
           }`}>
-          Book Viewing
+          Arrange Viewing
         </a>
         <button onClick={() => setOpen(!open)} className="md:hidden p-2 flex flex-col gap-1.5" aria-label="menu">
           <span className={`block w-6 h-px transition-all ${scrolled ? "bg-[#1C1510]" : "bg-white"} ${open ? "rotate-45 translate-y-[7px]" : ""}`} />
@@ -135,7 +135,7 @@ function Navbar() {
             ))}
             <a href="#enquire" onClick={() => setOpen(false)}
               className="block mt-5 text-center py-4 bg-[#B86840] text-white text-[11px] tracking-[0.22em] uppercase" style={O}>
-              Book Viewing
+              Arrange Viewing
             </a>
           </motion.div>
         )}
@@ -229,7 +229,7 @@ function Hero() {
           <a href="#enquire"
             className="inline-flex items-center justify-center gap-3 px-14 py-5 bg-[#B86840] text-white group hover:bg-[#C97848] active:bg-[#9E5A30] transition-colors duration-300 w-full sm:w-auto"
             style={{ ...O, fontSize: "13px", letterSpacing: "0.26em", textTransform: "uppercase", minHeight: "60px" }}>
-            Book a Private Viewing
+            Arrange a Private Viewing
             <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
           </a>
           <a href="#gallery"
@@ -744,253 +744,73 @@ function Location() {
 }
 
 /* ══════════════════════════════════════════════
-   ENQUIRY FORM — MULTI-STEP
+   ARRANGE A VIEWING — AGENT VERSION
 ══════════════════════════════════════════════ */
 function EnquiryForm() {
-  const [step, setStep] = useState(1);
-  const [dir, setDir] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedTime, setSelectedTime] = useState("");
-  const [form, setForm] = useState({ viewingDate: "", name: "", phone: "", email: "" });
-
-  const change = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-
-  const next = () => { setDir(1); setStep(s => s + 1); };
-  const back = () => { setDir(-1); setStep(s => s - 1); };
-  const submit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
-
-  const stepVariants = {
-    enter:  (d: number) => ({ x: d > 0 ?  40 : -40, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit:   (d: number) => ({ x: d > 0 ? -40 :  40, opacity: 0 }),
-  };
-
-  const timeSlots = [
-    { id: "morning",        label: "Morning",        sub: "9:00 am – 12:00 pm" },
-    { id: "afternoon",      label: "Afternoon",      sub: "12:00 pm – 3:00 pm" },
-    { id: "late-afternoon", label: "Late Afternoon", sub: "3:00 pm – 6:00 pm"  },
-  ];
-
-  const iBase = "w-full bg-white border border-[#D5C9B8] text-[#1C1510] py-5 px-6 text-base focus:outline-none focus:border-[#B86840]/70 transition-colors duration-300 placeholder:text-[#AFA090]";
-  const lStyle = { ...O, fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase" as const, color: "#AFA090" };
-  const btnFull = { ...O, fontSize: "12px", letterSpacing: "0.28em", textTransform: "uppercase" as const };
-
-  const timeLabel = timeSlots.find(t => t.id === selectedTime)?.label ?? "";
-  const dateFmt = form.viewingDate
-    ? new Date(form.viewingDate + "T12:00:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })
-    : "";
-
   return (
     <section id="enquire" className="bg-[#FAF7F2] scroll-mt-20 py-20 lg:py-32">
       <div className="section-container">
-      <div className="grid lg:grid-cols-[1fr_minmax(0,560px)] gap-16 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-[1fr_minmax(0,560px)] gap-16 lg:gap-20 items-start">
 
-        {/* ── LEFT — cream column ── */}
-        <div className="flex flex-col justify-center">
-          <Reveal>
-            <span style={O} className="block text-[11px] tracking-[0.45em] uppercase text-[#B86840] mb-4">
-              Schedule a Viewing
-            </span>
-            <h2 style={{ ...F, fontWeight: 700, fontSize: "clamp(2.8rem, 5vw, 5.5rem)", lineHeight: 1.0, letterSpacing: "-0.03em" }}
-              className="text-[#1C1510] mt-2 mb-8">
-              Begin Your<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "#B86840" }}>Enquiry</span>
-            </h2>
-            <div className="w-8 h-px bg-[#B86840] mb-8" />
-            <p style={{ ...O, fontWeight: 300 }} className="text-[#7A6A58] text-base leading-relaxed mb-12">
-              Complete the form and we will reach out within 24 hours to arrange
-              a private viewing at your convenience.
-            </p>
+          {/* ── LEFT ── */}
+          <div className="flex flex-col justify-center">
+            <Reveal>
+              <span style={O} className="block text-[11px] tracking-[0.45em] uppercase text-[#B86840] mb-4">
+                Arrange a Viewing
+              </span>
+              <h2 style={{ ...F, fontWeight: 700, fontSize: "clamp(2.8rem, 5vw, 5.5rem)", lineHeight: 1.0, letterSpacing: "-0.03em" }}
+                className="text-[#1C1510] mt-2 mb-8">
+                Speak to Your<br />
+                <span style={{ fontStyle: "italic", fontWeight: 300, color: "#B86840" }}>Agent</span>
+              </h2>
+              <div className="w-8 h-px bg-[#B86840] mb-8" />
+              <p style={{ ...O, fontWeight: 300 }} className="text-[#7A6A58] text-base leading-relaxed mb-12">
+                To schedule a private viewing of this residence, please speak with your agent.
+                They will coordinate access and arrange a time at your convenience.
+              </p>
 
-            {/* Rental terms */}
-            <div className="mb-12">
-              {([
-                { l: "Monthly Rent",  v: "Ksh 480,000" },
-                { l: "Deposit",       v: "2 Months"    },
-                { l: "Minimum Lease", v: "12 Months"   },
-              ] as { l: string; v: string }[]).map((d, i, arr) => (
-                <div key={d.l}
-                  className={`flex items-center justify-between py-5 ${i < arr.length - 1 ? "border-b border-[#D5C9B8]" : ""}`}>
-                  <span style={O} className="text-[10px] tracking-[0.28em] uppercase text-[#AFA090]">{d.l}</span>
-                  <span style={{ ...F, fontWeight: 700, fontSize: "1.15rem" }} className="text-[#1C1510]">{d.v}</span>
-                </div>
-              ))}
-            </div>
-
-          </Reveal>
-        </div>
-
-        {/* ── RIGHT — parchment card ── */}
-        <Reveal delay={0.15}>
-          <div className="bg-[#EBE3D5] flex flex-col py-16 px-10 md:px-12" style={{ minHeight: "640px" }}>
-
-            <AnimatePresence mode="wait">
-              {submitted ? (
-                <motion.div key="success"
-                  initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center justify-center text-center flex-1">
-                  <div className="w-20 h-20 rounded-full bg-[#B86840]/10 flex items-center justify-center mb-8">
-                    <CheckCircle2 size={36} strokeWidth={1.25} className="text-[#B86840]" />
+              {/* Rental terms */}
+              <div className="mb-12">
+                {([
+                  { l: "Monthly Rent",  v: "Ksh 480,000" },
+                  { l: "Deposit",       v: "2 Months"    },
+                  { l: "Minimum Lease", v: "12 Months"   },
+                ] as { l: string; v: string }[]).map((d, i, arr) => (
+                  <div key={d.l}
+                    className={`flex items-center justify-between py-5 ${i < arr.length - 1 ? "border-b border-[#D5C9B8]" : ""}`}>
+                    <span style={O} className="text-[10px] tracking-[0.28em] uppercase text-[#AFA090]">{d.l}</span>
+                    <span style={{ ...F, fontWeight: 700, fontSize: "1.15rem" }} className="text-[#1C1510]">{d.v}</span>
                   </div>
-                  <h3 style={{ ...F, fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.6rem)", lineHeight: 1.05 }}
-                    className="text-[#1C1510] mb-5">
-                    Viewing Request Received
-                  </h3>
-                  <p style={{ ...O, fontWeight: 300 }} className="text-[#7A6A58] text-base leading-relaxed max-w-xs mb-6">
-                    {dateFmt && timeLabel
-                      ? `We'll confirm your ${dateFmt} ${timeLabel.toLowerCase()} viewing within 24 hours.`
-                      : "We'll confirm your viewing within 24 hours."}
-                  </p>
-                </motion.div>
-              ) : (
-                <motion.div key="form" initial={false} className="flex flex-col flex-1">
-
-                  {/* Progress */}
-                  <div className="mb-12">
-                    <span style={{ ...O, fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase" as const, color: "#B86840" }}>
-                      Step {step} of 3
-                    </span>
-                    <div className="flex gap-2 mt-4">
-                      {[1, 2, 3].map(n => (
-                        <div key={n} className="h-[2px] flex-1 rounded-full transition-all duration-500"
-                          style={{ backgroundColor: n <= step ? "#B86840" : "#D5C9B8" }} />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Back */}
-                  <AnimatePresence>
-                    {step > 1 && (
-                      <motion.button type="button" onClick={back}
-                        initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex items-center gap-2 mb-8 text-[#AFA090] hover:text-[#B86840] transition-colors duration-300"
-                        style={{ ...O, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase" as const }}>
-                        <ArrowRight size={12} className="rotate-180" /> Back
-                      </motion.button>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Step content */}
-                  <AnimatePresence mode="wait" custom={dir}>
-                    <motion.div key={step} custom={dir}
-                      variants={stepVariants}
-                      initial="enter" animate="center" exit="exit"
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="flex flex-col flex-1">
-
-                      {/* STEP 1 — Pick a Date */}
-                      {step === 1 && (
-                        <form onSubmit={e => { e.preventDefault(); next(); }} className="flex flex-col flex-1">
-                          <h3 style={{ ...F, fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", lineHeight: 1.0 }}
-                            className="text-[#1C1510] mb-8">
-                            Select a viewing date
-                          </h3>
-                          <input type="date" name="viewingDate" required value={form.viewingDate} onChange={change}
-                            className={`${iBase} mb-4 [color-scheme:light]`} />
-                          <p style={{ ...O, fontWeight: 300 }} className="text-[#AFA090] text-sm mb-auto pb-12">
-                            Private viewings available Monday–Saturday, 9am–6pm
-                          </p>
-                          <button type="submit"
-                            className="w-full flex items-center justify-center gap-3 py-5 bg-[#B86840] text-white group hover:bg-[#C97848] active:bg-[#9E5A30] transition-colors duration-300"
-                            style={btnFull}>
-                            Next — Select a Time
-                            <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                          </button>
-                        </form>
-                      )}
-
-                      {/* STEP 2 — Pick a Time */}
-                      {step === 2 && (
-                        <div className="flex flex-col flex-1">
-                          <h3 style={{ ...F, fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", lineHeight: 1.0 }}
-                            className="text-[#1C1510] mb-8">
-                            Select a time
-                          </h3>
-                          <div className="space-y-3 mb-auto pb-12">
-                            {timeSlots.map(slot => (
-                              <button key={slot.id} type="button" onClick={() => setSelectedTime(slot.id)}
-                                className="w-full flex items-center justify-between py-6 px-8 border rounded-xl transition-all duration-200 text-left"
-                                style={{
-                                  borderColor: selectedTime === slot.id ? "#B86840" : "#D5C9B8",
-                                  backgroundColor: selectedTime === slot.id ? "rgba(184,104,64,0.08)" : "#FAF7F2",
-                                }}>
-                                <div>
-                                  <p style={{ ...O, fontWeight: 500 }}
-                                    className={selectedTime === slot.id ? "text-[#B86840] text-base" : "text-[#3C3028] text-base"}>
-                                    {slot.label}
-                                  </p>
-                                  <p style={{ ...O, fontWeight: 300 }}
-                                    className={`text-sm mt-0.5 ${selectedTime === slot.id ? "text-[#B86840]/60" : "text-[#AFA090]"}`}>
-                                    {slot.sub}
-                                  </p>
-                                </div>
-                                <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-4"
-                                  style={{ borderColor: selectedTime === slot.id ? "#B86840" : "#D5C9B8" }}>
-                                  {selectedTime === slot.id && <div className="w-2.5 h-2.5 rounded-full bg-[#B86840]" />}
-                                </div>
-                              </button>
-                            ))}
-                          </div>
-                          <button type="button" disabled={!selectedTime} onClick={next}
-                            className="w-full flex items-center justify-center gap-3 py-5 text-white group transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
-                            style={{ ...btnFull, backgroundColor: selectedTime ? "#B86840" : "#C8BBA8" }}>
-                            Next — Your Details
-                            <ArrowRight size={14} className={selectedTime ? "group-hover:translate-x-1.5 transition-transform duration-300" : ""} />
-                          </button>
-                        </div>
-                      )}
-
-                      {/* STEP 3 — Your Details */}
-                      {step === 3 && (
-                        <form onSubmit={submit} className="flex flex-col flex-1">
-                          <h3 style={{ ...F, fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", lineHeight: 1.0 }}
-                            className="text-[#1C1510] mb-8">
-                            Your details
-                          </h3>
-                          <div className="space-y-6 mb-auto pb-10">
-                            <div>
-                              <label style={lStyle} className="block mb-2">Full Name *</label>
-                              <input type="text" name="name" required value={form.name} onChange={change}
-                                placeholder="Jane Doe" className={iBase} />
-                            </div>
-                            <div>
-                              <label style={lStyle} className="block mb-2">Phone Number *</label>
-                              <input type="tel" name="phone" required value={form.phone} onChange={change}
-                                placeholder="+254 7XX XXX XXX" className={iBase} />
-                            </div>
-                            <div>
-                              <label style={lStyle} className="block mb-2">Email Address *</label>
-                              <input type="email" name="email" required value={form.email} onChange={change}
-                                placeholder="jane@example.com" className={iBase} />
-                            </div>
-                          </div>
-                          <button type="submit"
-                            className="w-full flex items-center justify-center gap-3 py-5 bg-[#B86840] text-white group hover:bg-[#C97848] active:bg-[#9E5A30] transition-colors duration-300"
-                            style={btnFull}>
-                            Confirm Viewing
-                            <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                          </button>
-                          <p style={{ ...O, color: "#AFA090" }}
-                            className="text-[10px] tracking-[0.2em] uppercase text-center mt-5">
-                            Your details are held in strict confidence.
-                          </p>
-                        </form>
-                      )}
-
-                    </motion.div>
-                  </AnimatePresence>
-
-                </motion.div>
-              )}
-            </AnimatePresence>
-
+                ))}
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
 
-      </div>
+          {/* ── RIGHT — parchment card ── */}
+          <Reveal delay={0.15}>
+            <div className="bg-[#EBE3D5] flex flex-col items-center justify-center py-20 px-10 md:px-14 text-center"
+              style={{ minHeight: "560px" }}>
+              <div className="w-20 h-20 rounded-full bg-[#B86840]/10 flex items-center justify-center mb-10">
+                <CalendarDays size={34} strokeWidth={1.25} className="text-[#B86840]" />
+              </div>
+              <h3 style={{ ...F, fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.6rem)", lineHeight: 1.05 }}
+                className="text-[#1C1510] mb-5">
+                Ready to View?
+              </h3>
+              <p style={{ ...O, fontWeight: 300 }} className="text-[#7A6A58] text-base leading-relaxed max-w-[260px] mb-10">
+                Ask your agent to arrange a private viewing of this residence.
+              </p>
+              <div className="w-12 h-px bg-[#C8BBA8] mb-8" />
+              <p style={O} className="text-[10px] tracking-[0.3em] uppercase text-[#AFA090]">
+                Private viewings available Monday – Saturday
+              </p>
+              <p style={O} className="text-[10px] tracking-[0.3em] uppercase text-[#AFA090] mt-1.5">
+                9 am – 6 pm
+              </p>
+            </div>
+          </Reveal>
+
+        </div>
       </div>
     </section>
   );
@@ -1152,7 +972,7 @@ function Footer() {
             <a href="#enquire"
               className="inline-flex items-center gap-3 px-8 py-4 border border-[#B86840]/60 text-[#B86840] group hover:bg-[#B86840] hover:text-white hover:border-[#B86840] transition-all duration-400"
               style={{ ...O, fontSize: "11px", letterSpacing: "0.24em", textTransform: "uppercase" }}>
-              Book a Viewing
+              Arrange a Viewing
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
             </a>
           </div>
@@ -1229,7 +1049,7 @@ function StickyBottomBar() {
           <a href="#enquire"
             className="flex-1 flex items-center justify-center gap-2 h-14 bg-[#B86840] text-white"
             style={{ ...O, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase" }}>
-            Book a Viewing
+            Arrange a Viewing
             <ArrowRight size={13} />
           </a>
         </motion.div>
