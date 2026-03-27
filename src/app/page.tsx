@@ -285,7 +285,7 @@ function Overview() {
         </Reveal>
 
         {/* Animated stat counters */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[#D5C9B8]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#D5C9B8] max-w-3xl mx-auto w-full">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.09}>
               <div className="bg-[#FAF7F2] px-8 py-16 text-center group hover:bg-[#F3EDE3] transition-colors duration-500">
@@ -593,12 +593,12 @@ function Gallery() {
     <section id="gallery" className="bg-[#FAF7F2] py-20 lg:py-40 scroll-mt-20">
       <div className="section-container">
 
-        <Reveal className="mb-14">
+        <Reveal className="mb-20">
           <span style={O} className="block text-[11px] tracking-[0.45em] uppercase text-[#B86840] mb-4">
             The Property
           </span>
           <h2 style={{ ...F, fontWeight: 700, fontSize: "clamp(3rem, 6.5vw, 7.5rem)", lineHeight: 0.88, letterSpacing: "-0.03em" }}
-            className="text-[#1C1510] mt-2 mb-8">
+            className="text-[#1C1510] mt-2 mb-10">
             Spaces &{" "}
             <span style={{ fontStyle: "italic", fontWeight: 300, color: "#B86840" }}>Light</span>
           </h2>
