@@ -10,7 +10,7 @@ import {
   Bed, Bath, MapPin, Wifi, Zap, Droplets, Car, Shield,
   Flame, UtensilsCrossed, Trees, ChefHat, Home as HomeIcon,
   Users, CalendarDays, ArrowRight, Sun, Sofa,
-  Banknote, Play,
+  Play,
 } from "lucide-react";
 
 /* ── font shorthand ── */
@@ -213,12 +213,6 @@ function Hero() {
               </span>
             </div>
           ))}
-          <div className="flex flex-col justify-center px-10 py-8">
-            <span style={{ ...F, fontWeight: 700, fontSize: "1.9rem", color: "#E8C49A", lineHeight: 1, letterSpacing: "-0.02em" }}>
-              480K
-            </span>
-            <span style={O} className="text-[10px] tracking-[0.32em] uppercase text-white/60 mt-1">KSh / month</span>
-          </div>
         </motion.div>
 
         {/* CTAs — large, side by side */}
@@ -260,7 +254,6 @@ function Overview() {
     { value: 4,   suffix: "",  label: "Bedrooms",          icon: <Bed  size={22} strokeWidth={1.5} /> },
     { value: 4,   suffix: "",  label: "Ensuite Bathrooms", icon: <Bath size={22} strokeWidth={1.5} /> },
     { value: 1,   suffix: "",  label: "Private Residence", icon: <HomeIcon size={22} strokeWidth={1.5} /> },
-    { value: 480, suffix: "K", label: "KSh Per Month",     icon: <Banknote size={22} strokeWidth={1.5} /> },
   ];
 
   return (
@@ -769,20 +762,6 @@ function EnquiryForm() {
                 They will coordinate access and arrange a time at your convenience.
               </p>
 
-              {/* Rental terms */}
-              <div className="mb-12">
-                {([
-                  { l: "Monthly Rent",  v: "Ksh 480,000" },
-                  { l: "Deposit",       v: "2 Months"    },
-                  { l: "Minimum Lease", v: "12 Months"   },
-                ] as { l: string; v: string }[]).map((d, i, arr) => (
-                  <div key={d.l}
-                    className={`flex items-center justify-between py-5 ${i < arr.length - 1 ? "border-b border-[#D5C9B8]" : ""}`}>
-                    <span style={O} className="text-[10px] tracking-[0.28em] uppercase text-[#AFA090]">{d.l}</span>
-                    <span style={{ ...F, fontWeight: 700, fontSize: "1.15rem" }} className="text-[#1C1510]">{d.v}</span>
-                  </div>
-                ))}
-              </div>
             </Reveal>
           </div>
 
@@ -963,7 +942,7 @@ function Footer() {
             </h2>
             <p style={{ ...O, fontWeight: 300 }} className="text-[#7A6A58] text-sm max-w-sm leading-relaxed mt-10">
               An exceptional 4-bedroom en-suite residence with study in the heart of New Kitisuru Estate,
-              Nairobi — available for let at Ksh 480,000 per month.
+              Nairobi — available for private let.
             </p>
           </div>
 
@@ -1041,13 +1020,9 @@ function StickyBottomBar() {
         <motion.div
           initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#FAF7F2] border-t border-[#D5C9B8] flex items-center justify-between px-6 py-3 gap-4">
-          <div>
-            <p style={O} className="text-[9px] tracking-[0.25em] uppercase text-[#AFA090] mb-0.5">Monthly Rent</p>
-            <p style={{ ...F, fontWeight: 700, fontSize: "1.2rem" }} className="text-[#1C1510] leading-none">Ksh 480,000</p>
-          </div>
+          className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#FAF7F2] border-t border-[#D5C9B8] px-6 py-3">
           <a href="#enquire"
-            className="flex-1 flex items-center justify-center gap-2 h-14 bg-[#B86840] text-white"
+            className="w-full flex items-center justify-center gap-2 h-14 bg-[#B86840] text-white"
             style={{ ...O, fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase" }}>
             Arrange a Viewing
             <ArrowRight size={13} />
